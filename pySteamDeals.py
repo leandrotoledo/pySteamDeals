@@ -1,6 +1,7 @@
 import urllib.request
 import requests
 from bs4 import BeautifulSoup
+from termcolor import colored
   
 
 def get_html(url):
@@ -61,6 +62,10 @@ def get_discounted_price(price, discount):
 for url in get_links():
    games = zip(list_titles(url), list_discounts(url), list_original_prices(url))
    for title, discount, o_price in games:
-      print(title, discount + ' from ' + o_price + ' to ' + '%.2f€' % (get_discounted_price(o_price, discount)))
-
+      if to_float(discount) < 50:
+         print(title, colored(discount, 'blue') + ' from ' + o_price + ' to ' + '%.2f€' % (get_discounted_price(o_price, discount)))
+      elif to_float(discount) > 50 and to_float(discount) < 75:
+         print(title, colored(discount, 'yellow') + ' from ' + o_price + ' to ' + '%.2f€' % (get_discounted_price(o_price, discount)))
+      elif to_float(discount) > 75:
+         print(title, colored(discount, 'green') + ' from ' + o_price + ' to ' + '%.2f€' % (get_discounted_price(o_price, discount)))
 
