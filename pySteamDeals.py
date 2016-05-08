@@ -4,6 +4,7 @@ from termcolor import colored
 
 BASE_URL = 'http://store.steampowered.com/search/results?sort_by=_ASC&os=win&specials=1'
 CURRENCY_SYMBOL = '€'
+#CURRENCY_SYMBOL = 'R$'
 
 
 def get_html(url):
@@ -85,8 +86,8 @@ for url in get_links():
 
     for title, discount, o_price, n_price in games:
         if discount < 50:
-            print(title, colored(discount, 'blue') + ' from ' + str(o_price) + ' to ' + str(n_price))
+            print('{} {} from {} {} to {} {}'.format(title, colored(str(discount)+'%', 'blue'), CURRENCY_SYMBOL, str(o_price), CURRENCY_SYMBOL, str(n_price)))
         elif discount > 50 and discount < 75:
-            print(title, colored(discount, 'yellow') + ' from ' + str(o_price) + ' to ' + str(n_price))
+            print('{} {} from {} {} to {} {}'.format(title, colored(str(discount)+'%', 'yellow'), CURRENCY_SYMBOL, str(o_price), CURRENCY_SYMBOL, str(n_price)))
         elif discount > 75:
-            print(title, colored(discount, 'green') + ' from ' + str(o_price) + ' to ' + str(n_price))
+            print('{} {} from {} {} to {} {}'.format(title, colored(str(discount)+'%', 'green'), CURRENCY_SYMBOL, str(o_price), CURRENCY_SYMBOL, str(n_price)))
