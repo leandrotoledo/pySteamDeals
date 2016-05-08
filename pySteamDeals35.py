@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.5
 import asyncio
+import uvloop
 import itertools
 import models
 from aiohttp import ClientSession
@@ -10,6 +11,7 @@ CURRENCY_SYMBOL = 'R$'
 #CURRENCY_SYMBOL = '$'
 #CURRENCY_SYMBOL = '€'
 
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def get_html(url):
     async with ClientSession() as session:
